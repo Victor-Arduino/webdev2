@@ -1,0 +1,27 @@
+{% extends 'activities/main.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  
+    <h1 class="text-center">Registration</h1>
+ 
+  <div class="container">
+    <a class= "btn btn-danger mb-4" href="{% url 'logout' %}">Logout</a> 
+    <a class= "btn btn-success mb-4" href="{% url 'userRegistration' %}">Add Interviewer</a> 
+  </div>
+  <div class="container">
+    <a class= "btn btn-warning" href="{% url 'searchCourseMajor' %}">
+        Change Course/Major</a>  
+  </div>
+  <div class="container">
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{form | crispy }}  
+      <button type="submit" class="btn btn-primary">Register</button>  
+    </form>
+
+  </div>
+
+ 
+{% endblock %}
+

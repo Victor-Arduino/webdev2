@@ -1,0 +1,51 @@
+{% extends 'activities/main.html' %}
+{% load static%}
+
+{% block content %}
+
+  <h1 class="text-center text-warning">Interview</h1>
+  <div class = "container">
+    <h1>Number of Applicants: {{totalApplicants}}</h1>     
+  </div>
+  <div class="container">
+    <form method="POST" action = "">
+      {% csrf_token %}
+    <input class="form-control mb-4" name = "search" type="text"
+      placeholder="Enter ERS Applicant No.">
+    <button type="submit" class="btn btn-primary">Search</button> 
+  </form>
+    <h3>{{noStatus}}</h3>
+    <div>Result Found: {{result}}</div>
+    <table class="table table-bordered table-striped">
+        <tr>
+          <th>Application Number</th>
+          <th>Lastname</th>
+          <th>Firstname</th>
+          <th>Course</th>
+          <th>Major</th>
+          <th>Status</th>
+          <th>Action Needed</th>
+        </tr>
+        {% for x in status %}
+          <tr>
+            <td>{{x.applicantNumber.applicantNumber}}</td>
+            <td>{{x.applicantNumber.lastName}}</td>
+            <td>{{x.applicantNumber.firstName}}</td>
+            <td>{{x.applicantNumber.course}}</td>
+            <td>{{x.applicantNumber.major}}</td>
+            <td>{{x.statusOfApplicants}}</td>
+            {% if x.statusOfApplicants == 'For Interview'  %}
+              <td><a class= "btn btn-info" href="{% url 'changeStatus' x.id%}">Interview</a></td>
+            {% else %}
+              <td>None</td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+    </table>
+
+  </div>
+  <div class="container">
+    <a class= "btn btn-danger" href="{% url 'logout' %}">Logout</a>
+  </div>
+</body>
+{% endblock %}

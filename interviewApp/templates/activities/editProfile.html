@@ -1,0 +1,16 @@
+{% extends 'activities/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <h1 class="text-center">Edit Applicant's Info</h1>
+  <div class="container">
+    <form method="POST" action = "">
+      {% csrf_token %}
+      {{information | crispy}}
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <a class= "btn btn-danger" href="{% url 'registration' %}">Cancel</a>
+    </form>
+    
+  </div>
+{% endblock %}
+
